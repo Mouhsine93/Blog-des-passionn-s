@@ -4,10 +4,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-$nom_serveur = "localhost";
-$nom_base_de_donnees = "gestion_de_stock";
-$utilisateur = "root";
-$mot_de_passe = "root";
+$nom_serveur = getenv("DB_HOST") ?: "localhost";
+$nom_base_de_donnees = getenv("DB_NAME") ?: "gestion_de_stock";
+$utilisateur = getenv("DB_USER") ?: "root";
+$mot_de_passe = getenv("DB_PASSWORD") ?: "root";
 
 try {
     $connexion = new PDO("mysql:host=$nom_serveur;dbname=$nom_base_de_donnees", $utilisateur, $mot_de_passe);
